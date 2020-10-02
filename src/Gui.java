@@ -11,6 +11,7 @@ import javax.swing.*;
 public class Gui extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static final int maxWidth = 1000;
+	private static final int maxHeight = 1000;
 	private int width;
 	private int height;
 	Object mtc;
@@ -18,6 +19,10 @@ public class Gui extends JPanel {
 	List<Color> colorSafe;
 
 	public Gui(Object mtc, int width, int height) {
+		if(width>maxWidth||height>maxHeight||width<1||height<1) {
+			System.out.println("width und height müssen  >= 1 und <= "+maxWidth+" sein.");
+			System.exit(0);
+		}
 		colorSafe= new ArrayList<Color>();
 		iSafe = new ArrayList<Integer>();
 		jSafe = new ArrayList<Integer>();
@@ -83,7 +88,20 @@ public class Gui extends JPanel {
 	   protected void paintComponent(Graphics g) {
 	      super.paintComponent(g);
 			while(!iSafe.isEmpty()) {
-				paintRectangle(iSafe.remove(iSafe.size()-1), jSafe.remove(jSafe.size()-1), colorSafe.remove(colorSafe.size()-1));
+				int i =iSafe.remove(iSafe.size()-1);
+				int j =jSafe.remove(jSafe.size()-1);
+				Color color = colorSafe.remove(colorSafe.size()-1);
+				
+				if(i<0||i>width) {
+					System.out.println("i muss  >= 0 und <= "+width+" sein.");
+					System.exit(0);
+				}
+				if(j<0||j>height) {
+					System.out.println("j muss  >= 0 und <= "+height+" sein.");
+					System.exit(0);
+				}
+				
+				paintRectangle(i, j, color);
 				try {
 					Thread.sleep(250);
 				} catch (InterruptedException e) {
@@ -106,8 +124,7 @@ public class Gui extends JPanel {
 
 	@Override
 	public Dimension getPreferredSize() {
-		// so that our GUI is big enough
-		return new Dimension(maxWidth, maxWidth);
+		return new Dimension(maxWidth, maxHeight);
 	}
 
 }
