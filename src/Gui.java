@@ -89,18 +89,19 @@ public class Gui extends JPanel {
 	  @Override
 	   protected void paintComponent(Graphics g) {
 	      super.paintComponent(g);
-			int count = iSafe.size()-1;
-			while(count>=0) {
+			int count = 0;
+			while(count<iSafe.size()) {
 				int i =iSafe.get(count);
 				int j =jSafe.get(count);
-				Color color = colorSafe.get(count--);
+				Color color = colorSafe.get(colorSafe.size()==1?0:count);
+				count++;
 				
-				if(i<0||i>width) {
-					System.out.println("i muss  >= 0 und <= "+width+" sein.");
+				if(i<0||i>=width) {
+					System.out.println("i muss  >= 0 und < "+width+" sein.");
 					System.exit(0);
 				}
-				if(j<0||j>height) {
-					System.out.println("j muss  >= 0 und <= "+height+" sein.");
+				if(j<0||j>=height) {
+					System.out.println("j muss  >= 0 und < "+height+" sein.");
 					System.exit(0);
 				}
 				
