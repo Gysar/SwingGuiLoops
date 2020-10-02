@@ -14,9 +14,10 @@ public class Gui extends JPanel {
 	private static final int maxHeight = 1000;
 	private int width;
 	private int height;
-	Object mtc;
-	List<Integer> iSafe, jSafe;
-	List<Color> colorSafe;
+	private Object mtc;
+	private List<Integer> iSafe, jSafe;
+	private List<Color> colorSafe;
+	private boolean drawn; 
 
 	public Gui(Object mtc, int width, int height) {
 		if(width>maxWidth||height>maxHeight||width<1||height<1) {
@@ -29,6 +30,7 @@ public class Gui extends JPanel {
 		this.height = height;
 		this.width = width;
 		this.mtc = mtc;
+		this.drawn = false;
 	}
 
 	public Gui() {
@@ -87,10 +89,11 @@ public class Gui extends JPanel {
 	  @Override
 	   protected void paintComponent(Graphics g) {
 	      super.paintComponent(g);
-			while(!iSafe.isEmpty()) {
-				int i =iSafe.remove(iSafe.size()-1);
-				int j =jSafe.remove(jSafe.size()-1);
-				Color color = colorSafe.remove(colorSafe.size()-1);
+			int count = iSafe.size()-1;
+			while(count>=0) {
+				int i =iSafe.get(count);
+				int j =jSafe.get(count);
+				Color color = colorSafe.get(count--);
 				
 				if(i<0||i>width) {
 					System.out.println("i muss  >= 0 und <= "+width+" sein.");
@@ -103,16 +106,11 @@ public class Gui extends JPanel {
 				
 				paintRectangle(i, j, color);
 				try {
-					Thread.sleep(250);
+					if(!drawn)Thread.sleep(100);
 				} catch (InterruptedException e) {
 				}
 			}
-			
-			//Ohne das verschwindet alles sofort wieder, mit gibt's ne exeption
-			try {
-				g.wait();
-			} catch (InterruptedException e) {
-			}
+			drawn=true;
 	   }
 
 	protected void paintRectangle(int i, int j, Color color) {
