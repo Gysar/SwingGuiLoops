@@ -165,6 +165,7 @@ public class Gui extends JPanel {
 			} catch (InterruptedException e) {
 			}
 		}
+		
 		Thread.currentThread().stop();
 	}
 
