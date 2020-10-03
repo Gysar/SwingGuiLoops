@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.Component;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ public class Gui extends JPanel {
 	}
 
 	/**
-	 * Paints a rectangle
+	 * Paints a rectangle.
 	 * @param x the x coordinate of the rectangle
 	 * @param y the y coordinate of the rectangle
 	 * @param color The awt.Color to paint the rectangle in
@@ -106,7 +107,7 @@ public class Gui extends JPanel {
 	}
 
 	/**
-	 * Paints a rectangle
+	 * Paints a rectangle.
 	 * @param x the x coordinates array of the rectangles
 	 * @param y the y coordinates array of the rectangles
 	 * @param color The awt.Color to paint the rectangles in
@@ -124,14 +125,14 @@ public class Gui extends JPanel {
 	}
 
 	/**
-	*
+	* Returns the width.
 	*/
 	public int getWidth() {
 		return width;
 	}
 
 	/**
-	 *
+	 * Returns the height.
 	 */
 	public int getHeight() {
 		return height;
@@ -142,7 +143,6 @@ public class Gui extends JPanel {
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
 		int count = 0;
 		while (count < iSafe.size()) {
 			int i = iSafe.get(count);
@@ -165,14 +165,7 @@ public class Gui extends JPanel {
 			} catch (InterruptedException e) {
 			}
 		}
-		// HILFE!
-		// Der fängt sofort an das neu zu malen, gibt es eine möglichkeit, dem ab hier
-		// das Updaten zu verbieten? das this.wait erzeugt das quasi aber nur über ne
-		// exeption
-		try {
-			this.wait();
-		} catch (InterruptedException e) {
-		}
+		Thread.currentThread().stop();
 	}
 
 	/**
@@ -183,7 +176,6 @@ public class Gui extends JPanel {
 	 */
 	private void paintRectangle(int x, int y, Color color) {
 		Graphics g = this.getGraphics();
-		super.paintComponents(g);
 		g.setColor(color);
 		g.fillRect(x * this.getBounds().width / width, y * this.getBounds().height / height,
 				this.getBounds().width / width, this.getBounds().height / height);
