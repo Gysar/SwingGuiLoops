@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.Component;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class Gui extends JPanel {
 	private Object mtc;
 	private List<Integer> iSafe, jSafe;
 	private List<Color> colorSafe;
-	private boolean drawn; 
+	private int waitMs=100;
 
 	public Gui(Object mtc, int width, int height) {
 		if(width>maxWidth||height>maxHeight||width<1||height<1) {
@@ -30,7 +31,10 @@ public class Gui extends JPanel {
 		this.height = height;
 		this.width = width;
 		this.mtc = mtc;
-		this.drawn = false;
+	}
+
+	public void setWaitMs(int waitMs) {
+		this.waitMs = waitMs;
 	}
 
 	public Gui() {
@@ -62,6 +66,7 @@ public class Gui extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(mainPanel);
 		frame.pack();
+		frame.setResizable(false);
 		frame.setLocationByPlatform(true);
 		frame.setVisible(true);
 		
@@ -86,7 +91,15 @@ public class Gui extends JPanel {
 		colorSafe.add(color);
 	}
 
-	  @Override
+	  public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	@Override
 	   protected void paintComponent(Graphics g) {
 	      super.paintComponent(g);
 			int count = 0;
@@ -107,11 +120,16 @@ public class Gui extends JPanel {
 				
 				paintRectangle(i, j, color);
 				try {
-					if(!drawn)Thread.sleep(100);
+					Thread.sleep(this.waitMs);
 				} catch (InterruptedException e) {
 				}
 			}
-			drawn=true;
+			//HILFE!
+			//Der fängt sofort an das neu zu malen, gibt es eine möglichkeit, dem ab hier das Updaten zu verbieten? das this.wait erzeugt das quasi aber nur über ne exeption
+			try {
+				this.wait();
+			} catch (InterruptedException e) {
+			}
 	   }
 
 	protected void paintRectangle(int i, int j, Color color) {
