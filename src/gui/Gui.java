@@ -34,7 +34,7 @@ public class Gui extends JPanel {
 	/** Saves the color of the squares to draw. */
 	private List<Color> colorSafe;
 	/** The time to wait between each drawing step. */
-	private int waitMs = 100;
+	private int waitMs = 0;
 
 	/**
 	 * generates a gui object.
@@ -98,7 +98,7 @@ public class Gui extends JPanel {
 	}
 
 	/**
-	 * Paints a rectangle.
+	 * Paints a rectangle at the specified coordinates.
 	 * @param x the x coordinate of the rectangle
 	 * @param y the y coordinate of the rectangle
 	 * @param color The awt.Color to paint the rectangle in
@@ -110,7 +110,7 @@ public class Gui extends JPanel {
 	}
 
 	/**
-	 * Paints a rectangle.
+	 * Paints rectangles from coordinate arrays.
 	 * @param x the x coordinates array of the rectangles
 	 * @param y the y coordinates array of the rectangles
 	 * @param color The awt.Color to paint the rectangles in
@@ -154,11 +154,11 @@ public class Gui extends JPanel {
 			count++;
 
 			if (i < 0 || i >= width) {
-				System.out.println("i muss  >= 0 und < " + width + " sein.");
+				System.out.println("i has to be  >= 0 and < " + width + ".");
 				System.exit(0);
 			}
 			if (j < 0 || j >= height) {
-				System.out.println("j muss  >= 0 und < " + height + " sein.");
+				System.out.println("j has to be  >= 0 and < " + height + ".");
 				System.exit(0);
 			}
 
@@ -171,6 +171,7 @@ public class Gui extends JPanel {
 		
 		// Das hier ist nicht schön. Es wäre besser, wenn man g sagen könnte, dass es nicht repainted werden soll.
 		// Am besten wäre es sagen zu können "Das hier ist fertig, es muss nicht mehr gemalt werden.".
+		// Es ist nicht gut den Thread zu stoppen.
 		Thread.currentThread().stop();
 	}
 
