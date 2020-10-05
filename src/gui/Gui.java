@@ -1,20 +1,22 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import javax.swing.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * Creates a window and invokes the generate(int, int, Color) method of the
  * given class.
  * 
- * @author Gysar Flegel
+ * @author Gysar Flegel, 
+ * @email gysar.flegel@fh-bielefeld.de
  */
 public class Gui extends JPanel {
 	/** Window width in pixels */
@@ -45,9 +47,9 @@ public class Gui extends JPanel {
 			System.out.println("width und height müssen  >= 1 und <= " + maxWidth + " sein.");
 			System.exit(0);
 		}
-		colorSafe = new ArrayList<Color>();
-		iSafe = new ArrayList<Integer>();
-		jSafe = new ArrayList<Integer>();
+		colorSafe = new LinkedList<Color>();
+		iSafe = new LinkedList<Integer>();
+		jSafe = new LinkedList<Integer>();
 		this.height = height;
 		this.width = width;
 		this.mtc = mtc;
@@ -114,11 +116,11 @@ public class Gui extends JPanel {
 	 * @param color The awt.Color to paint the rectangles in
 	 */
 	public void rectangleAt(int[] is, int[] js, Color color) {
-		iSafe = new ArrayList<Integer>(is.length);
+		iSafe = new LinkedList<Integer>();
 		for (int i : is) {
 			iSafe.add(i);
 		}
-		jSafe = new ArrayList<Integer>(js.length);
+		jSafe = new LinkedList<Integer>();
 		for (int j : js) {
 			jSafe.add(j);
 		}

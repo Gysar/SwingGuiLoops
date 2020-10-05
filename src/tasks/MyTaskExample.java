@@ -14,8 +14,8 @@ public class MyTaskExample {
 
 	public void generate(Gui gui, int rows, int columns) {
 		gui.setWaitMs(0);
-		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
-//		pyramide(gui);
+//		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
+		pyramide(gui);
 
 	}
 	
