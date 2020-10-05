@@ -1,5 +1,8 @@
+package tasks;
 
 import java.awt.Color;
+
+import gui.Gui;
 
 public class MyTaskExample {
 
@@ -9,14 +12,14 @@ public class MyTaskExample {
 		return false;
 	}
 
-	void generate(Gui gui, int rows, int columns) {
+	public void generate(Gui gui, int rows, int columns) {
 		gui.setWaitMs(0);
-		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/4);
+		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
 //		pyramide(gui);
 
 	}
 	
-	void pyramide(Gui gui) {
+	private void pyramide(Gui gui) {
 		int n = gui.getWidth();
 		for (int i = 0; i < (n / 2) + 1; i++) {
 			for (int j = 0; j < 2 * i  +n%2 + n / 2 - i; j++) {
@@ -25,7 +28,7 @@ public class MyTaskExample {
 		}
 	}
 
-	void midPointCircleDraw(Gui gui, int x_centre, int y_centre, int r) {
+	private void midPointCircleDraw(Gui gui, int x_centre, int y_centre, int r) {
 		int x = r, y = 0;
 
 		// Printing the initial point on the axes
