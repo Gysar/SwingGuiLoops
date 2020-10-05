@@ -167,6 +167,8 @@ public class Gui extends JPanel {
 			}
 		}
 		
+		// Das hier ist nicht schön. Es wäre besser, wenn man g sagen könnte, dass es nicht repainted werden soll.
+		// Am besten wäre es sagen zu können "Das hier ist fertig, es muss nicht mehr gemalt werden.".
 		Thread.currentThread().stop();
 	}
 
