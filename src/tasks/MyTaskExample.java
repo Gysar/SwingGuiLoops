@@ -8,14 +8,6 @@ public class MyTaskExample {
 
 	//fuer rectangleAt(int[], int[], Color), sinnvoller Wert?
 	private static final int MAX_SIZE = 1920;
-
-	//wozu?
-	private boolean equalApprox(double asked, double target, double threshhold) {
-		if (asked - asked * threshhold <= target && asked + asked * threshhold >= target)
-			return true;
-		return false;
-	}
-
 	public void generate(Gui gui, int rows, int columns) {
 		gui.setWaitMs(0);
 //		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
