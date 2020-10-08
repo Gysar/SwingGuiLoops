@@ -20,7 +20,9 @@ public class MyTaskExample {
 		gui.setWaitMs(0);
 //		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
 //		pyramide(gui);
-		pyramideArray(gui);
+//		pyramideArray(gui);
+//		checkerPattern(gui);
+		checkerPatternArray(gui);
 	}
 
 	private void pyramide(Gui gui) {
@@ -30,6 +32,40 @@ public class MyTaskExample {
 				if(!(j < n / 2 - i))gui.rectangleAt(j, i, Color.GREEN);
 			}
 		}
+	}
+
+	private void checkerPattern(Gui gui){
+		int n = gui.getWidth();
+		int m = gui.getHeight();
+		for(int i = 0; i< n; i++){
+			for(int j = 0;j<m;j++){
+				if((i+j)%2==0) {
+					gui.rectangleAt(i, j, Color.BLACK);
+				}
+			}
+		}
+	}
+
+	private void checkerPatternArray(Gui gui){
+		int n = gui.getWidth();
+		int m = gui.getHeight();
+		int[] is = new int[MAX_SIZE];
+		int[] js = new int[MAX_SIZE];
+		Color[] colors = new Color[MAX_SIZE];
+		int counter = 0;
+
+		for(int i = 0; i< n; i++){
+			for(int j = 0;j<m;j++){
+				if((i+j)%2==0) {
+					is[counter] = i;
+					js[counter] = j;
+					colors[counter] = Color.BLACK;
+					counter++;
+				}
+			}
+		}
+
+		gui.rectangleAt(is,js,colors);
 	}
 
 	private void pyramideArray(Gui gui){
@@ -119,6 +155,4 @@ public class MyTaskExample {
 			}
 		}
 	}
-
-
 }
