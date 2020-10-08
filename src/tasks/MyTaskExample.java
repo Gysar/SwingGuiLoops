@@ -6,6 +6,10 @@ import gui.Gui;
 
 public class MyTaskExample {
 
+	//fuer rectangleAt(int[], int[], Color), sinnvoller Wert?
+	private static final int MAX_SIZE = 1920;
+
+	//wozu?
 	private boolean equalApprox(double asked, double target, double threshhold) {
 		if (asked - asked * threshhold <= target && asked + asked * threshhold >= target)
 			return true;
@@ -15,10 +19,10 @@ public class MyTaskExample {
 	public void generate(Gui gui, int rows, int columns) {
 		gui.setWaitMs(0);
 //		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
-		pyramide(gui);
-
+//		pyramide(gui);
+		pyramideArray(gui);
 	}
-	
+
 	private void pyramide(Gui gui) {
 		int n = gui.getWidth();
 		for (int i = 0; i < (n / 2) + 1; i++) {
@@ -26,6 +30,42 @@ public class MyTaskExample {
 				if(!(j < n / 2 - i))gui.rectangleAt(j, i, Color.GREEN);
 			}
 		}
+	}
+
+	private void pyramideArray(Gui gui){
+		int n = gui.getWidth();
+		int counter = 0;
+
+		/** Arrays must have fixed size: MAX_SIZE*/
+		int[] is = new int[MAX_SIZE];
+		int[] js = new int [MAX_SIZE];
+		Color[] colors = new Color[MAX_SIZE];
+		for (int i = 0; i < (n / 2) + 1; i++) {
+			for (int j = 0; j < 2 * i  +n%2 + n / 2 - i; j++) {
+				if(!(j < n / 2 - i)){
+					js[counter] = j;
+					is[counter] = i;
+
+					/** if i is even paint blue */
+					if(i%2==0){
+						colors[counter] = Color.BLUE;
+					}
+					else{
+						colors[counter] = Color.BLACK;
+					}
+					counter++;
+				}
+			}
+		}
+
+		/** set the unused Variables to -1 (default value 0 would draw at 0,0)*/
+		for(int i = counter; i < MAX_SIZE; i++ ){
+			js[i] = -1;
+			is[i] = -1;
+		}
+
+
+		gui.rectangleAt(js, is, colors);
 	}
 
 	private void midPointCircleDraw(Gui gui, int x_centre, int y_centre, int r) {
@@ -79,5 +119,6 @@ public class MyTaskExample {
 			}
 		}
 	}
+
 
 }

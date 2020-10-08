@@ -113,9 +113,9 @@ public class Gui extends JPanel {
 	 * Paints rectangles from coordinate arrays.
 	 * @param is the x coordinates array of the rectangles
 	 * @param js the y coordinates array of the rectangles
-	 * @param color The awt.Color to paint the rectangles in
+	 * @param colors The awt.Colors to paint the rectangles in
 	 */
-	public void rectangleAt(int[] is, int[] js, Color color) {
+	public void rectangleAt(int[] is, int[] js, Color[] colors) {
 		iSafe = new LinkedList<Integer>();
 		for (int i : is) {
 			iSafe.add(i);
@@ -124,7 +124,9 @@ public class Gui extends JPanel {
 		for (int j : js) {
 			jSafe.add(j);
 		}
-		colorSafe.add(color);
+		for(Color color : colors) {
+			colorSafe.add(color);
+		}
 	}
 
 	/**
@@ -153,16 +155,20 @@ public class Gui extends JPanel {
 			Color color = colorSafe.get(colorSafe.size() == 1 ? 0 : count);
 			count++;
 
-			if (i < 0 || i >= width) {
+		/*	if (i < 0 || i >= width) {
 				System.out.println("i has to be  >= 0 and < " + width + ".");
 				System.exit(0);
 			}
 			if (j < 0 || j >= height) {
 				System.out.println("j has to be  >= 0 and < " + height + ".");
 				System.exit(0);
+			}*/
+
+			if (!(i < 0 || i >= width)&&!(j < 0 || j >= height)) {
+				paintRectangle(i, j, color);
 			}
 
-			paintRectangle(i, j, color);
+
 			try {
 				Thread.sleep(this.waitMs);
 			} catch (InterruptedException e) {
