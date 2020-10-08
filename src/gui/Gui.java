@@ -44,7 +44,7 @@ public class Gui extends JPanel {
 	 */
 	public Gui(Object mtc, int width, int height) {
 		if (width > maxWidth || height > maxHeight || width < 1 || height < 1) {
-			System.out.println("width und height müssen  >= 1 und <= " + maxWidth + " sein.");
+			System.out.println("width und height mï¿½ssen  >= 1 und <= " + maxWidth + " sein.");
 			System.exit(0);
 		}
 		colorSafe = new LinkedList<Color>();
@@ -99,8 +99,8 @@ public class Gui extends JPanel {
 
 	/**
 	 * Paints a rectangle at the specified coordinates.
-	 * @param x the x coordinate of the rectangle
-	 * @param y the y coordinate of the rectangle
+	 * @param i the x coordinate of the rectangle
+	 * @param j the y coordinate of the rectangle
 	 * @param color The awt.Color to paint the rectangle in
 	 */
 	public void rectangleAt(int i, int j, Color color) {
@@ -111,8 +111,8 @@ public class Gui extends JPanel {
 
 	/**
 	 * Paints rectangles from coordinate arrays.
-	 * @param x the x coordinates array of the rectangles
-	 * @param y the y coordinates array of the rectangles
+	 * @param is the x coordinates array of the rectangles
+	 * @param js the y coordinates array of the rectangles
 	 * @param color The awt.Color to paint the rectangles in
 	 */
 	public void rectangleAt(int[] is, int[] js, Color color) {
@@ -169,8 +169,8 @@ public class Gui extends JPanel {
 			}
 		}
 		
-		// Das hier ist nicht schön. Es wäre besser, wenn man g sagen könnte, dass es nicht repainted werden soll.
-		// Am besten wäre es sagen zu können "Das hier ist fertig, es muss nicht mehr gemalt werden.".
+		// Das hier ist nicht schï¿½n. Es wï¿½re besser, wenn man g sagen kï¿½nnte, dass es nicht repainted werden soll.
+		// Am besten wï¿½re es sagen zu kï¿½nnen "Das hier ist fertig, es muss nicht mehr gemalt werden.".
 		// Es ist nicht gut den Thread zu stoppen.
 		Thread.currentThread().stop();
 	}
