@@ -44,7 +44,7 @@ public class Gui extends JPanel {
 	 */
 	public Gui(Object mtc, int width, int height) {
 		if (width > maxWidth || height > maxHeight || width < 1 || height < 1) {
-			System.out.println("width und height must be >= 1 and <= " + maxWidth);
+			System.out.println("width and height must be >= 1 and <= " + maxWidth);
 			System.exit(0);
 		}
 		colorSafe = new LinkedList<Color>();
