@@ -6,15 +6,27 @@ import gui.Gui;
 
 public class MyTaskExample {
 
-	//fuer rectangleAt(int[], int[], Color), sinnvoller Wert?
-	private static final int MAX_SIZE = 1920;
-	public void generate(Gui gui, int rows, int columns) {
+	/** for the Arrays in rectangleAt(int[], int[], Color),
+	 * Arrays must have a fixed size. For clarity it is declared as
+	 * "final static". This makes it an constant (can't be changed).
+	 */
+	private final static int MAX_SIZE = 2000;
+
+	/** The generate Method that is invoked in the Gui class.
+	 *  It can call different methods for different drawing algorithms.
+	 *  The drawing algorithm (for example pyramde(gui)) must call gui.rectangleAt,
+	 *  thats why it needs an gui object as parameter.
+	 * @param gui the class that handles the drawing, only needs the right coordinates.
+	 * @param height the amount of squares in the height of the window
+	 * @param width the amount of squares in the width of the window
+	 */
+	public void generate(Gui gui, int width, int height) {
 		gui.setWaitMs(0);
 //		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
 //		pyramide(gui);
 //		pyramideArray(gui);
-//		checkerPattern(gui);
-		checkerPatternArray(gui);
+		checkerPattern(gui);
+//		checkerPatternArray(gui);
 	}
 
 	private void pyramide(Gui gui) {
@@ -26,12 +38,30 @@ public class MyTaskExample {
 		}
 	}
 
+	/** Draws a checker pattern
+	 * @param gui used to pass the coordinates with gui.rectangleAt
+	 */
 	private void checkerPattern(Gui gui){
+		/** we need the height and width to draw a checker pattern */
 		int n = gui.getWidth();
 		int m = gui.getHeight();
+
+		/** the first for-loop iterates through the whole width*/
 		for(int i = 0; i< n; i++){
+			/** the second for-loop iterates through the whole height*/
 			for(int j = 0;j<m;j++){
+
+				/** to get the pattern we add the current row we are looking at to the current
+				 * column we are looking at. If the number is even ( (i+j)%2==0 is only true if it is even )
+				 * we paint the square at this row and column black
+				 * Example: the first rectangle has the coordinates 0,0
+				 * (0 + 0) % 2 = 0: it will become black,
+				 * the rectangles next to it (coordinates 0,1 and 1,0) have to stay white:
+				 * (1 + 0) % 2 = 1: it will stay white
+				 * (0 + 1) % 2 = 1: it will stay white
+				 */
 				if((i+j)%2==0) {
+					/** gui.rectangleAt sends the coordnates and the color of the rectangle to the Gui class */
 					gui.rectangleAt(i, j, Color.BLACK);
 				}
 			}
@@ -86,7 +116,10 @@ public class MyTaskExample {
 			}
 		}
 
-		/** set the unused Variables to -1 (default value 0 would draw at 0,0)*/
+		/**
+		 * MAX_SIZE is bigger than the amount of coordinates we need,
+		 * set the unused Variables to -1 (default value 0 would draw at 0,0)
+		 */
 		for(int i = counter; i < MAX_SIZE; i++ ){
 			js[i] = -1;
 			is[i] = -1;
