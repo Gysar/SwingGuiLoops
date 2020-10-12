@@ -15,10 +15,10 @@ public class MyTaskExample {
 	 * @param width the amount of squares in the width of the window
 	 */
 	public void generate(Gui gui, int width, int height) {
-		gui.setWaitMs(0);
-		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
+		gui.setWaitMs(1000);
+//		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
 //		pyramide(gui);
-//		pyramideArray(gui);
+		pyramideArray(gui);
 //		checkerPattern(gui);
 //		checkerPatternArray(gui);
 	}
@@ -56,7 +56,7 @@ public class MyTaskExample {
 				 */
 				if((i+j)%2==0) {
 					/** gui.rectangleAt sends the coordnates and the color of the rectangle to the Gui class */
-					gui.rectangleAt(i, j, Color.BLACK);
+					gui.rectangleAt(j, i, Color.BLACK);
 				}
 			}
 		}
