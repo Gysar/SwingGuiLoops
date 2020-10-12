@@ -20,9 +20,9 @@ import javax.swing.JPanel;
  */
 public class Gui extends JPanel {
 	/** Window width in pixels */
-	private static final int maxWidth = 1000;
+	private static final int maxWidth = 500;
 	/** Window height in pixels */
-	private static final int maxHeight = 1000;
+	private static final int maxHeight = 500;
 	/** The number of rectangles to devide the window width by. */
 	private int width;
 	/** The number of rectangles to devide the window height by. */
@@ -155,17 +155,13 @@ public class Gui extends JPanel {
 			Color color = colorSafe.get(colorSafe.size() == 1 ? 0 : count);
 			count++;
 
-		/*	if (i < 0 || i >= width) {
+			if (i < 0 || i >= width) {
 				System.out.println("i has to be  >= 0 and < " + width + ".");
 				System.exit(0);
 			}
 			if (j < 0 || j >= height) {
 				System.out.println("j has to be  >= 0 and < " + height + ".");
 				System.exit(0);
-			}*/
-
-			if (!(i < 0 || i >= width)&&!(j < 0 || j >= height)) {
-				paintRectangle(i, j, color);
 			}
 
 

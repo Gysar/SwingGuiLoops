@@ -6,12 +6,6 @@ import gui.Gui;
 
 public class MyTaskExample {
 
-	/** for the Arrays in rectangleAt(int[], int[], Color),
-	 * Arrays must have a fixed size. For clarity it is declared as
-	 * "final static". This makes it an constant (can't be changed).
-	 */
-	private final static int MAX_SIZE = 2000;
-
 	/** The generate Method that is invoked in the Gui class.
 	 *  It can call different methods for different drawing algorithms.
 	 *  The drawing algorithm (for example pyramde(gui)) must call gui.rectangleAt,
@@ -21,12 +15,12 @@ public class MyTaskExample {
 	 * @param width the amount of squares in the width of the window
 	 */
 	public void generate(Gui gui, int width, int height) {
-		gui.setWaitMs(0);
+		gui.setWaitMs(100);
 //		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
 //		pyramide(gui);
 //		pyramideArray(gui);
-		checkerPattern(gui);
-//		checkerPatternArray(gui);
+//		checkerPattern(gui);
+		checkerPatternArray(gui);
 	}
 
 	private void pyramide(Gui gui) {
@@ -71,6 +65,7 @@ public class MyTaskExample {
 	private void checkerPatternArray(Gui gui){
 		int n = gui.getWidth();
 		int m = gui.getHeight();
+		final int MAX_SIZE = (gui.getWidth()*gui.getHeight()+1)/2;
 		int[] is = new int[MAX_SIZE];
 		int[] js = new int[MAX_SIZE];
 		Color[] colors = new Color[MAX_SIZE];
@@ -93,6 +88,7 @@ public class MyTaskExample {
 	private void pyramideArray(Gui gui){
 		int n = gui.getWidth();
 		int counter = 0;
+		final int MAX_SIZE = gui.getWidth()*gui.getHeight();
 
 		/** Arrays must have fixed size: MAX_SIZE*/
 		int[] is = new int[MAX_SIZE];
@@ -121,8 +117,8 @@ public class MyTaskExample {
 		 * set the unused Variables to -1 (default value 0 would draw at 0,0)
 		 */
 		for(int i = counter; i < MAX_SIZE; i++ ){
-			js[i] = -1;
-			is[i] = -1;
+			js[i] = js[0];
+			is[i] = is[0];
 		}
 
 
