@@ -15,12 +15,12 @@ public class MyTaskExample {
 	 * @param width the amount of squares in the width of the window
 	 */
 	public void generate(Gui gui, int width, int height) {
-		gui.setWaitMs(100);
+		gui.setWaitMs(10);
 //		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
 //		pyramide(gui);
-//		pyramideArray(gui);
+		pyramideArray(gui);
 //		checkerPattern(gui);
-		checkerPatternArray(gui);
+//		checkerPatternArray(gui);
 	}
 
 	private void pyramide(Gui gui) {

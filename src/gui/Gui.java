@@ -155,12 +155,10 @@ public class Gui extends JPanel {
 			Color color = colorSafe.get(colorSafe.size() == 1 ? 0 : count);
 			count++;
 
-			if (i < 0 || i >= width) {
-				System.out.println("i has to be  >= 0 and < " + width + ".");
-				System.exit(0);
-			}
-			if (j < 0 || j >= height) {
-				System.out.println("j has to be  >= 0 and < " + height + ".");
+			if (!(i < 0 || i >= width)&&!(j < 0 || j >= height)) {
+				paintRectangle(i, j, color);
+			}else {
+				System.out.println("Dimensions i="+i+" and j="+j+" are not in bounds.");
 				System.exit(0);
 			}
 
