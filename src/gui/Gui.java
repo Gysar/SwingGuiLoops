@@ -81,9 +81,14 @@ public class Gui extends JPanel {
 		}
 		try {
 			generate.invoke(mtc, this, width, height);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			System.out.println("Something went wrong, please try again.");
-			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			System.out.println("The generate(Gui, int, int) is not public.");
+			System.exit(0);
+		} catch (IllegalArgumentException e) {
+			System.out.println("The generate(Gui, int, int) didn't get the right types of arguments.");
+			System.exit(0);
+		} catch (InvocationTargetException e) {
+			System.out.println("Something went wrong in generate(Gui, int, int). Please make sure, it doesn't throw any exceptions");
 			System.exit(0);
 		}
 		Gui mainPanel = this;
