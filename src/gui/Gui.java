@@ -75,7 +75,7 @@ public class Gui extends JPanel {
 			cArg[1] = int.class;
 			cArg[2] = int.class;
 			generate = mtc.getClass().getDeclaredMethod("generate", cArg);
-		} catch (NoSuchMethodException | SecurityException e) {
+		} catch (NoSuchMethodException e) {
 			System.out.println("Missing method \"void generate(Gui gui, int rows, int columns)\"");
 			System.exit(0);
 		}
