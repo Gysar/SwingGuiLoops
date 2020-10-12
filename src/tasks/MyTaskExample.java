@@ -15,10 +15,10 @@ public class MyTaskExample {
 	 * @param width the amount of squares in the width of the window
 	 */
 	public void generate(Gui gui, int width, int height) {
-		gui.setWaitMs(10);
-//		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
+		gui.setWaitMs(0);
+		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
 //		pyramide(gui);
-		pyramideArray(gui);
+//		pyramideArray(gui);
 //		checkerPattern(gui);
 //		checkerPatternArray(gui);
 	}
@@ -137,7 +137,8 @@ public class MyTaskExample {
 		if (r > 0) {
 			gui.rectangleAt(x + x_centre, -y + y_centre, Color.RED);
 			gui.rectangleAt(y + x_centre, x + y_centre, Color.RED);
-			gui.rectangleAt(-y + x_centre, x + y_centre, Color.RED);
+			gui.rectangleAt(-y + x_centre, -x + y_centre, Color.RED);
+			gui.rectangleAt(-x + x_centre, -y + y_centre, Color.RED);
 		}
 
 		// Initialising the value of P
