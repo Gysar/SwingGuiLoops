@@ -187,7 +187,7 @@ public class Gui extends JPanel implements ActionListener {
     protected void paintComponent(Graphics g) {
         int count = 0;
 
-        while (count <= countGlobal) {
+        while (count < countGlobal) {
             int i = iSafe.get(count);
             int j = jSafe.get(count);
             Color color = colorSafe.get(colorSafe.size() == 1 ? 0 : count);
@@ -200,11 +200,6 @@ public class Gui extends JPanel implements ActionListener {
                 System.exit(0);
             }
 
-
-           /* try {
-                Thread.sleep(this.waitMs);
-            } catch (InterruptedException e) {
-            }*/
         }
         if (countGlobal < Math.min(iSafe.size(), jSafe.size())) {
             if (doRepaint) {
@@ -212,11 +207,6 @@ public class Gui extends JPanel implements ActionListener {
                 doRepaint = false;
             }
         }
-
-        // Das hier ist nicht sch�n. Es w�re besser, wenn man g sagen k�nnte, dass es nicht repainted werden soll.
-        // Am besten w�re es sagen zu k�nnen "Das hier ist fertig, es muss nicht mehr gemalt werden.".
-        // Es ist nicht gut den Thread zu stoppen.
-        //Thread.currentThread().stop();
     }
 
     /**
