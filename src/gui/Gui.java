@@ -21,8 +21,19 @@ import javax.swing.*;
  */
 public class Gui extends JPanel implements ActionListener {
 
+    /**
+     * used to allow resize only if start has not been called
+     */
+    private boolean allowResize = true;
+
+    /**
+     * only repaint if certain condition occures
+     */
     private boolean doRepaint = false;
 
+    /**
+     * used to store the counter outside of a function
+     */
     private int countGlobal = 0;
 
     Timer timer = null;
@@ -30,11 +41,11 @@ public class Gui extends JPanel implements ActionListener {
     /**
      * Window width in pixels
      */
-    private static final int maxWidth = 500;
+    private int maxWidth = 500;
     /**
      * Window height in pixels
      */
-    private static final int maxHeight = 500;
+    private int maxHeight = 500;
     /**
      * The number of rectangles to devide the window width by.
      */
@@ -68,8 +79,8 @@ public class Gui extends JPanel implements ActionListener {
      * @param height the number of rectangles to devide the window height by.
      */
     public Gui(Object mtc, int width, int height) {
-        if (width > maxWidth || height > maxHeight || width < 1 || height < 1) {
-            System.out.println("width and height must be >= 1 and <= " + maxWidth);
+        if (width > 100 || height > 100 || width < 5 || height < 5) {
+            System.out.println("width and height must be >= 5 and <= 100");
             System.exit(0);
         }
         colorSafe = new LinkedList<Color>();
@@ -86,6 +97,10 @@ public class Gui extends JPanel implements ActionListener {
      * @param waitMs The time to wait after drawing a rectangle.
      */
     public void setWaitMs(int waitMs) {
+        if (waitMs < 100 || waitMs > 2000) {
+            System.out.println("waitMs must be >= 100 and <= 2000");
+            System.exit(0);
+        }
         this.waitMs = waitMs;
     }
 
@@ -93,7 +108,7 @@ public class Gui extends JPanel implements ActionListener {
      * Starts the gui.
      */
     public void start() {
-
+        allowResize = false;
         Method generate = null;
         try {
             Class[] cArg = new Class[3];
@@ -238,5 +253,26 @@ public class Gui extends JPanel implements ActionListener {
             repaint();
         }
 
+    }
+
+    //Kann immer aufgerufen werden ist aber nie ein problem!?
+    /**
+     * used to change the size of the window
+     * @param newMaxHeight new window height
+     * @param newMaxWidth  new window width
+     */
+    public void resizeWindow(int newMaxHeight, int newMaxWidth) {
+        if(newMaxHeight < 50 || newMaxWidth < 50 || newMaxHeight > 1000 || newMaxWidth > 1000){
+            System.out.println("newMaxHeight and newMaxWidth must be in the interval (50,1000)");
+            System.exit(0);
+        }
+        if (allowResize = true) {
+            maxHeight = newMaxHeight;
+            maxWidth = newMaxWidth;
+            getPreferredSize();
+        } else{
+            System.out.println("window should only be resized before calling gui.start()");
+            System.exit(0);
+        }
     }
 }

@@ -25,17 +25,17 @@ public class MyTaskExample {
      * @param width  the amount of squares in the width of the window
      */
     public void generate(Gui gui, int width, int height) {
-        gui.setWaitMs(0);
+        gui.setWaitMs(100);
 //		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
-//		pyramid(gui);
+//		pyramidDifficult(gui);
 //		pyramidArray(gui);
-//		checkerPattern(gui);
+		checkerPattern(gui);
 //		checkerPatternArray(gui);
 //      row(gui,3);
 //		column(gui,3);
 //		diagonal(gui);
 //		rectangle(gui);
-        pyramidEasy(gui);
+//        pyramidEasy(gui);
     }
 
     /**
@@ -46,12 +46,17 @@ public class MyTaskExample {
     private void rectangle(Gui gui) {
         int n = gui.getWidth();
         int m = gui.getHeight();
+
+        // n and m need to be in bounds (should not be bigger than width and height)
+        //int n = 4;
+        //int m = 4;
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 /**
                  * to get the border either i or j has to be at their maximum or minimum
                  */
-                if (i == 0 || j == 0 || i == (n - 1) || j == (m - 1)) gui.rectangleAt(i, j, Color.MAGENTA);
+                if (i == 1 || j == 1 || i == (n - 1) || j == (m - 1)) gui.rectangleAt(i, j, Color.MAGENTA);
             }
         }
     }
@@ -64,6 +69,9 @@ public class MyTaskExample {
      */
     private void row(Gui gui, int j) {
         int n = gui.getWidth();
+
+        // n and m need to be in bounds (should not be bigger than width and height)
+        //int n = 4;
         for (int i = 0; i < n; i++) {
             gui.rectangleAt(i, j, Color.CYAN);
         }
@@ -77,6 +85,9 @@ public class MyTaskExample {
      */
     private void column(Gui gui, int i) {
         int n = gui.getHeight();
+
+        // n and m need to be in bounds (should not be bigger than width and height)
+        //int n = 4;
         for (int j = 0; j < n; j++) {
             gui.rectangleAt(i, j, Color.YELLOW);
         }
@@ -89,7 +100,10 @@ public class MyTaskExample {
      */
     private void diagonal(Gui gui) {
         int n = gui.getWidth();
-        int m = gui.getHeight();
+
+        // n and m need to be in bounds (should not be bigger than width and height)
+        //int n = 4;
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (i == j) gui.rectangleAt(i, j, Color.PINK);
@@ -103,6 +117,10 @@ public class MyTaskExample {
 	 */
 	private void pyramidEasy(Gui gui) {
         int n = gui.getWidth();
+
+        // n and m need to be in bounds (should not be bigger than width and height)
+        //int n = 4;
+
 		/**
 		 * CounterA is used to store the steps, counterB is manipulated in a loop
 		 */
@@ -147,6 +165,10 @@ public class MyTaskExample {
      */
     private void pyramidDifficult(Gui gui) {
         int n = gui.getWidth();
+
+        // n and m need to be in bounds (should not be bigger than width and height)
+        //int n = 4;
+
         for (int i = 0; i < (n / 2) + 1; i++) {
             for (int j = 0; j < 2 * i + n % 2 + n / 2 - i; j++) {
                 if (!(j < n / 2 - i)) gui.rectangleAt(j, i, Color.GREEN);
@@ -163,9 +185,13 @@ public class MyTaskExample {
         int n = gui.getWidth();
         int m = gui.getHeight();
 
+
+        // n and m need to be in bounds (should not be bigger than width and height)
+        //int n = 4;
+        //int m = 4;
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-
                 /** to get the pattern we add the current row we are looking at to the current
                  * column we are looking at. If the number is even ( (i+j)%2==0 is only true if it is even )
                  * we paint the square at this row and column black
