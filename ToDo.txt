@@ -2,3 +2,4 @@
 - aktuelles beispiel mit width 100 und height 100 komisch (Flackern im linken Bildschrimteil)
 - resizeWindow geht immer?? -> trotz abfrage mit bool kann man die größe des Fensters jeder Zeit ändern,
 es wird aber immer nur die letzte änderung angenommen und es gibt keine Probleme -> kann bool abfrage weg?
+- zusätzlich Prüfen ob width/height </> maxWidth
