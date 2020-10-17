@@ -40,4 +40,9 @@ bin
 *.out
 *.app
 
+#intellij
+**/.idea
+**/.out
+*.iml
+
 
