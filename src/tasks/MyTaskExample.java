@@ -29,12 +29,12 @@ public class MyTaskExample {
 //		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
 //		pyramidDifficult(gui);
 //		pyramidArray(gui);
-		checkerPattern(gui);
+//		checkerPattern(gui);
 //		checkerPatternArray(gui);
 //      row(gui,3);
 //		column(gui,3);
 //		diagonal(gui);
-//		rectangle(gui);
+		rectangle(gui);
 //        pyramidEasy(gui);
     }
 
@@ -47,16 +47,25 @@ public class MyTaskExample {
         int n = gui.getWidth();
         int m = gui.getHeight();
 
+        /**
+         * where should the first (top left) point be?
+         */
+        int rectangleStartI = 3;
+        int rectangleStartJ = 3;
+
+        /**
+         * where should the last (bottom right) point be?
+         */
+        int rectangleEndI = 2;
+        int rectangleEndJ = 2;
+
         // n and m need to be in bounds (should not be bigger than width and height)
         //int n = 4;
         //int m = 4;
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                /**
-                 * to get the border either i or j has to be at their maximum or minimum
-                 */
-                if (i == 1 || j == 1 || i == (n - 1) || j == (m - 1)) gui.rectangleAt(i, j, Color.MAGENTA);
+        for (int i = rectangleStartI; i < n-rectangleEndI; i++) {
+            for (int j = rectangleStartJ; j < m-rectangleEndJ; j++) {
+                gui.rectangleAt(i,j,Color.MAGENTA);
             }
         }
     }
