@@ -83,6 +83,10 @@ public class Gui extends JPanel implements ActionListener {
             System.out.println("width and height must be >= 5 and <= 100");
             System.exit(0);
         }
+        if(width > maxWidth || height > maxHeight){
+            System.out.println("width and height must be <= maxWidth/maxHeight");
+            System.exit(0);
+        }
         colorSafe = new LinkedList<Color>();
         iSafe = new LinkedList<Integer>();
         jSafe = new LinkedList<Integer>();
@@ -266,7 +270,7 @@ public class Gui extends JPanel implements ActionListener {
             System.out.println("newMaxHeight and newMaxWidth must be in the interval (50,1000)");
             System.exit(0);
         }
-        if (allowResize = true) {
+        if (allowResize == true) {
             maxHeight = newMaxHeight;
             maxWidth = newMaxWidth;
             getPreferredSize();
