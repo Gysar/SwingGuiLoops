@@ -27,14 +27,14 @@ public class MyTaskExample {
     public void generate(Gui gui, int width, int height) {
         gui.setWaitMs(100);
 //		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
-//		pyramidDifficult(gui);
+		pyramidDifficult(gui);
 //		pyramidArray(gui);
 //		checkerPattern(gui);
 //		checkerPatternArray(gui);
 //      row(gui,3);
 //		column(gui,3);
 //		diagonal(gui);
-		rectangle(gui);
+//		rectangle(gui);
 //        pyramidEasy(gui);
     }
 
@@ -179,8 +179,8 @@ public class MyTaskExample {
         //int n = 4;
 
         for (int i = 0; i < (n / 2) + 1; i++) {
-            for (int j = 0; j < 2 * i + n % 2 + n / 2 - i; j++) {
-                if (!(j < n / 2 - i)) gui.rectangleAt(j, i, Color.GREEN);
+            for (int j =  n / 2 - i; j < 2 * i + n % 2 + n / 2 - i; j++) {
+                gui.rectangleAt(j, i, Color.GREEN);
             }
         }
     }

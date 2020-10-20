@@ -1,2 +1,7 @@
 - aktuelles beispiel mit width 100 und height 100 komisch (Flackern im linken Bildschrimteil)
 - Linien bei Pyramide oder Rechteck noch weg? (Ich würd sagen Philipp soll entscheiden wie wichtig das ist)
+
+
+
+
+Die linien zwischen den Rechtecken behoben.

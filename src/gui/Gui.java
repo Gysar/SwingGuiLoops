@@ -239,7 +239,7 @@ public class Gui extends JPanel implements ActionListener {
         Graphics g = this.getGraphics();
         g.setColor(color);
         g.fillRect(x * this.getBounds().width / width, y * this.getBounds().height / height,
-                this.getBounds().width / width, this.getBounds().height / height);
+                (this.getBounds().width+width) / width, (this.getBounds().height+height) / height);
     }
 
     /**
