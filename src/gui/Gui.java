@@ -37,6 +37,7 @@ public class Gui extends JPanel implements ActionListener {
     private int countGlobal = 0;
 
     Timer timer = null;
+    
 
     /**
      * Window width in pixels
@@ -144,7 +145,6 @@ public class Gui extends JPanel implements ActionListener {
         frame.setResizable(false);
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
-
         timer = new Timer(waitMs, this);
         timer.setInitialDelay(1000);
         timer.start();
@@ -204,6 +204,7 @@ public class Gui extends JPanel implements ActionListener {
      */
     @Override
     protected void paintComponent(Graphics g) {
+    	super.paintComponent(g);
         int count = 0;
 
         while (count < countGlobal) {
@@ -254,7 +255,8 @@ public class Gui extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ev) {
         if (ev.getSource() == timer) {
             doRepaint = true;
-            repaint();
+//            repaint();
+            update(this.getGraphics());
         }
 
     }

@@ -1,1 +1,2 @@
 - aktuelles beispiel mit width 100 und height 100 komisch (Flackern im linken Bildschrimteil)
+Flackert jetzt weniger problematisch.

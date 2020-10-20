@@ -27,9 +27,9 @@ public class MyTaskExample {
     public void generate(Gui gui, int width, int height) {
         gui.setWaitMs(100);
 //		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
-		pyramidDifficult(gui);
+//		pyramidDifficult(gui);
 //		pyramidArray(gui);
-//		checkerPattern(gui);
+		checkerPattern(gui);
 //		checkerPatternArray(gui);
 //      row(gui,3);
 //		column(gui,3);

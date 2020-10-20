@@ -12,7 +12,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		MyTaskExample mtc = new MyTaskExample();
-		Gui gui = new Gui(mtc, 9, 9);
+		Gui gui = new Gui(mtc, 100, 100);
 		gui.resizeWindow(600,600);
 		gui.start(); // <- gui calls mtc.generate(this)
 	}
