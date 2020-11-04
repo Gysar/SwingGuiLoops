@@ -63,16 +63,8 @@ public class Gui extends JPanel implements ActionListener {
 	private Object mtc;
 
 	/**
-	 * Saves the coordinates of the squares to draw.
+	 * List of rows we wanna draw
 	 */
-	private List<Point> coordinates;
-
-	/**
-	 * Saves the color of the squares to draw.
-	 */
-	private List<Color> colorSafe;
-
-
 	private List<Template> templates;
 
 	/**
@@ -100,9 +92,7 @@ public class Gui extends JPanel implements ActionListener {
 			System.exit(0);
 		}
 
-		colorSafe = new LinkedList<>();
-		coordinates = new LinkedList<>();
-
+		templates = new LinkedList<>();
 
 		this.height = height;
 		this.width = width;
@@ -178,9 +168,6 @@ public class Gui extends JPanel implements ActionListener {
 	 * @param color The awt.Color to paint the rectangle in
 	 */
 	public void rectangleAt(int i, int j, Color color) {
-		this.coordinates.add(new Point(i,j));
-		this.colorSafe.add(color);
-
 		this.templates.add(new Template(new Drawing(i,j,color)));
 	}
 
@@ -205,11 +192,6 @@ public class Gui extends JPanel implements ActionListener {
 	 * @param colors The awt.Colors to paint the rectangles in
 	 */
 	public void rectangleAt(Point[] points, Color[] colors) {
-
-		coordinates.clear();
-		coordinates.addAll(Arrays.asList(points));
-		Collections.addAll(colorSafe, colors);
-
 		this.templates.add(new Template(Arrays.asList(points), Arrays.asList(colors)));
 	}
 
@@ -237,16 +219,14 @@ public class Gui extends JPanel implements ActionListener {
 		var count = 0;
 		while (count < countGlobal) {
 
-			var point = coordinates.get(count);
+			for(var template : this.templates){
+				for(var drawing : template.getDrawings()){
 
-			var templates = this.templates;
+					var point = drawing.coordinate;
+					var color = drawing.color;
 
-			var color = colorSafe.get(colorSafe.size() == 1 ? 0 : count);
-
-			for(Template template : templates){
-				for(Drawing drawing : template.getDrawings()){
 					if (!(point.x < 0 || point.x >= width) && !(point.y < 0 || point.y >= height)) {
-						paintRectangle(drawing.coordinate.x, drawing.coordinate.y, drawing.color);
+						paintRectangle(point.x, point.y, color);
 					} else {
 						System.out.println("Dimensions i=" + point.x + " and j=" + point.y + " are not in bounds.");
 						System.exit(0);
@@ -256,7 +236,7 @@ public class Gui extends JPanel implements ActionListener {
 
 			count++;
 		}
-		if (countGlobal < Math.min(coordinates.size(), coordinates.size())) {
+		if (countGlobal < templates.size()) {
 			if (doRepaint) {
 				countGlobal++;
 				doRepaint = false;
