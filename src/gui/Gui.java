@@ -219,18 +219,17 @@ public class Gui extends JPanel implements ActionListener {
 		var count = 0;
 		while (count < countGlobal) {
 
-			for(var template : this.templates){
-				for(var drawing : template.getDrawings()){
+			var template = templates.get(count);
+			for(var drawing : template.getDrawings()){
 
-					var point = drawing.coordinate;
-					var color = drawing.color;
+				var point = drawing.coordinate;
+				var color = drawing.color;
 
-					if (!(point.x < 0 || point.x >= width) && !(point.y < 0 || point.y >= height)) {
-						paintRectangle(point.x, point.y, color);
-					} else {
-						System.out.println("Dimensions i=" + point.x + " and j=" + point.y + " are not in bounds.");
-						System.exit(0);
-					}
+				if (!(point.x < 0 || point.x >= width) && !(point.y < 0 || point.y >= height)) {
+					paintRectangle(point.x, point.y, color);
+				} else {
+					System.out.println("Dimensions i=" + point.x + " and j=" + point.y + " are not in bounds.");
+					System.exit(0);
 				}
 			}
 
