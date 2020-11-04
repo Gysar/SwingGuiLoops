@@ -16,5 +16,4 @@ public class Main {
 		gui.resizeWindow(600,600);
 		gui.start(); // <- gui calls mtc.generate(this)
 	}
-
 }
