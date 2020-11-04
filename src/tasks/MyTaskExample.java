@@ -1,6 +1,7 @@
 package tasks;
 
-import java.awt.Color;
+import java.awt.*;
+import java.util.ArrayList;
 
 import gui.Gui;
 
@@ -25,17 +26,69 @@ public class MyTaskExample {
      * @param width  the amount of squares in the width of the window
      */
     public void generate(Gui gui, int width, int height) {
-        gui.setWaitMs(100);
-		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
-//		pyramidDifficult(gui);
-//		pyramidDifficultArray(gui);
+        gui.setWaitMs(1000);
+//		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
+		//pyramidDifficult(gui);
+		//pyramidDifficultArray(gui);
 //		checkerPattern(gui);
+        drawByLine(gui);
 //		checkerPatternArray(gui);
 //      row(gui,3);
 //		column(gui,3);
 //		diagonal(gui);
 //		rectangle(gui);
 //        pyramidEasy(gui);
+    }
+
+    private void drawByLine(Gui gui){
+
+        var firstRow = new ArrayList<Point>();
+        var firstColors = new ArrayList<Color>();
+
+        firstRow.add(new Point(1,1));
+        firstRow.add(new Point(2,1));
+        firstRow.add(new Point(3,1));
+        firstColors.add(new Color(10,10,10));
+        firstColors.add(new Color(10,10,10));
+        firstColors.add(new Color(10,10,10));
+
+
+        var secondRow = new ArrayList<Point>();
+        var secondColors = new ArrayList<Color>();
+
+        secondRow.add(new Point(1,2));
+        secondRow.add(new Point(2,2));
+        secondRow.add(new Point(3,2));
+        secondColors.add(new Color(10,10,10));
+        secondColors.add(new Color(10,10,10));
+        secondColors.add(new Color(10,10,10));
+
+
+        var thirdRow = new ArrayList<Point>();
+        var thirdColors = new ArrayList<Color>();
+
+        thirdRow.add(new Point(1,3));
+        thirdRow.add(new Point(2,3));
+        thirdRow.add(new Point(3,3));
+        thirdColors.add(new Color(10,10,10));
+        thirdColors.add(new Color(10,10,10));
+        thirdColors.add(new Color(10,10,10));
+
+
+        var fourthRow = new ArrayList<Point>();
+        var fourthColors = new ArrayList<Color>();
+
+        fourthRow.add(new Point(1,4));
+        fourthRow.add(new Point(2,4));
+        fourthRow.add(new Point(3,4));
+        fourthColors.add(new Color(10,10,10));
+        fourthColors.add(new Color(10,10,10));
+        fourthColors.add(new Color(10,10,10));
+
+        gui.rectangleAt(firstRow.toArray(new Point[0]), firstColors.toArray(new Color[1]));
+        gui.rectangleAt(secondRow.toArray(new Point[0]), secondColors.toArray(new Color[1]));
+        gui.rectangleAt(thirdRow.toArray(new Point[0]), thirdColors.toArray(new Color[1]));
+        gui.rectangleAt(fourthRow.toArray(new Point[0]), fourthColors.toArray(new Color[1]));
     }
 
     /**
@@ -247,7 +300,6 @@ public class MyTaskExample {
         gui.rectangleAt(is, js, colors);
     }
 
-
     /**
      * Draw a pyramid (difficult version) using the getRectangle(int[],int[],Colors[] method)
      *
@@ -290,8 +342,6 @@ public class MyTaskExample {
 
         gui.rectangleAt(js, is, colors);
     }
-
-
 
 
     private void midPointCircleDraw(Gui gui, int x_centre, int y_centre, int r) {
