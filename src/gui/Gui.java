@@ -63,12 +63,8 @@ public class Gui extends JPanel implements ActionListener {
 	/**
 	 * Saves the coordinates of the squares to draw.
 	 */
-	private List<Point> coordinates;
+	private List<Drawing> drawings;
 
-	/**
-	 * Saves the color of the squares to draw.
-	 */
-	private List<Color> colorSafe;
 	/**
 	 * The time to wait between each drawing step.
 	 */
@@ -94,8 +90,7 @@ public class Gui extends JPanel implements ActionListener {
 			System.exit(0);
 		}
 
-		colorSafe = new LinkedList<>();
-		coordinates = new LinkedList<>();
+		drawings = new LinkedList<>();
 
 		this.height = height;
 		this.width = width;
@@ -171,8 +166,7 @@ public class Gui extends JPanel implements ActionListener {
 	 * @param color The awt.Color to paint the rectangle in
 	 */
 	public void rectangleAt(int i, int j, Color color) {
-		this.coordinates.add(new Point(i,j));
-		this.colorSafe.add(color);
+		this.drawings.add(new Drawing(i,j, color));
 	}
 
 	/**
@@ -184,22 +178,20 @@ public class Gui extends JPanel implements ActionListener {
 	 */
 	public void rectangleAt(int[] is, int[] js, Color[] colors) {
 
-		var points = new Point[is.length];
-		for(var index = 0; index < is.length; index++) points[index] = new Point(is[index], js[index]);
-		rectangleAt(points, colors);
+		var drawings = new Drawing[is.length];
+		for(var index = 0; index < is.length; index++) drawings[index] = new Drawing(is[index], js[index], colors[index]);
+		rectangleAt(drawings);
 	}
 
 	/**
 	 * Paints rectangles from coordinate arrays.
 	 *
-	 * @param points The damn coordinates
-	 * @param colors The awt.Colors to paint the rectangles in
+	 * @param drawings A array of drawings we wanna draw
 	 */
-	public void rectangleAt(Point[] points, Color[] colors) {
+	public void rectangleAt(Drawing[] drawings) {
 
-		coordinates.clear();
-		coordinates.addAll(Arrays.asList(points));
-		Collections.addAll(colorSafe, colors);
+		this.drawings.clear();
+		this.drawings.addAll(Arrays.asList(drawings));
 	}
 
 	/**
@@ -226,8 +218,9 @@ public class Gui extends JPanel implements ActionListener {
 		var count = 0;
 		while (count < countGlobal) {
 
-			var point = coordinates.get(count);
-			var color = colorSafe.get(colorSafe.size() == 1 ? 0 : count);
+			var drawing = drawings.get(count);
+			var point = drawing.coordinate;
+			var color = drawing.color;
 			count++;
 
 			if (!(point.x < 0 || point.x >= width) && !(point.y < 0 || point.y >= height)) {
@@ -238,7 +231,7 @@ public class Gui extends JPanel implements ActionListener {
 			}
 
 		}
-		if (countGlobal < Math.min(coordinates.size(), coordinates.size())) {
+		if (countGlobal < Math.min(drawings.size(), drawings.size())) {
 			if (doRepaint) {
 				countGlobal++;
 				doRepaint = false;
