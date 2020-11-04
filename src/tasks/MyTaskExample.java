@@ -26,9 +26,9 @@ public class MyTaskExample {
      */
     public void generate(Gui gui, int width, int height) {
         gui.setWaitMs(100);
-//		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
+		midPointCircleDraw(gui, gui.getWidth() / 2, gui.getHeight() / 2, (gui.getHeight()+gui.getWidth())/6);
 //		pyramidDifficult(gui);
-		pyramidDifficultArray(gui);
+//		pyramidDifficultArray(gui);
 //		checkerPattern(gui);
 //		checkerPatternArray(gui);
 //      row(gui,3);
@@ -247,6 +247,7 @@ public class MyTaskExample {
         gui.rectangleAt(is, js, colors);
     }
 
+
     /**
      * Draw a pyramid (difficult version) using the getRectangle(int[],int[],Colors[] method)
      *
@@ -289,6 +290,8 @@ public class MyTaskExample {
 
         gui.rectangleAt(js, is, colors);
     }
+
+
 
 
     private void midPointCircleDraw(Gui gui, int x_centre, int y_centre, int r) {
