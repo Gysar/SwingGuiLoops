@@ -73,7 +73,7 @@ public class Gui extends JPanel implements ActionListener {
 	private List<Color> colorSafe;
 
 
-	private Template template;
+	private List<Template> templates;
 
 	/**
 	 * The time to wait between each drawing step.
@@ -181,7 +181,7 @@ public class Gui extends JPanel implements ActionListener {
 		this.coordinates.add(new Point(i,j));
 		this.colorSafe.add(color);
 
-		this.template.addDrawing(new Drawing(i,j,color));
+		this.templates.add(new Template(new Drawing(i,j,color)));
 	}
 
 	/**
@@ -210,7 +210,7 @@ public class Gui extends JPanel implements ActionListener {
 		coordinates.addAll(Arrays.asList(points));
 		Collections.addAll(colorSafe, colors);
 
-		template.addDrawings(Arrays.asList(points), Arrays.asList(colors));
+		this.templates.add(new Template(Arrays.asList(points), Arrays.asList(colors)));
 	}
 
 	/**
@@ -239,17 +239,22 @@ public class Gui extends JPanel implements ActionListener {
 
 			var point = coordinates.get(count);
 
-			var drawings = this.template.getDrawings();
-			var color = colorSafe.get(colorSafe.size() == 1 ? 0 : count);
-			count++;
+			var templates = this.templates;
 
-			if (!(point.x < 0 || point.x >= width) && !(point.y < 0 || point.y >= height)) {
-				paintRectangle(point.x, point.y, color);
-			} else {
-				System.out.println("Dimensions i=" + point.x + " and j=" + point.y + " are not in bounds.");
-				System.exit(0);
+			var color = colorSafe.get(colorSafe.size() == 1 ? 0 : count);
+
+			for(Template template : templates){
+				for(Drawing drawing : template.getDrawings()){
+					if (!(point.x < 0 || point.x >= width) && !(point.y < 0 || point.y >= height)) {
+						paintRectangle(drawing.coordinate.x, drawing.coordinate.y, drawing.color);
+					} else {
+						System.out.println("Dimensions i=" + point.x + " and j=" + point.y + " are not in bounds.");
+						System.exit(0);
+					}
+				}
 			}
 
+			count++;
 		}
 		if (countGlobal < Math.min(coordinates.size(), coordinates.size())) {
 			if (doRepaint) {
