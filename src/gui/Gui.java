@@ -1,5 +1,7 @@
 package gui;
 
+import main.Template;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.lang.reflect.InvocationTargetException;
@@ -69,6 +71,10 @@ public class Gui extends JPanel implements ActionListener {
 	 * Saves the color of the squares to draw.
 	 */
 	private List<Color> colorSafe;
+
+
+	private Template template;
+
 	/**
 	 * The time to wait between each drawing step.
 	 */
@@ -96,6 +102,7 @@ public class Gui extends JPanel implements ActionListener {
 
 		colorSafe = new LinkedList<>();
 		coordinates = new LinkedList<>();
+
 
 		this.height = height;
 		this.width = width;
@@ -173,6 +180,8 @@ public class Gui extends JPanel implements ActionListener {
 	public void rectangleAt(int i, int j, Color color) {
 		this.coordinates.add(new Point(i,j));
 		this.colorSafe.add(color);
+
+		this.template.addDrawing(new Drawing(i,j,color));
 	}
 
 	/**
@@ -200,6 +209,8 @@ public class Gui extends JPanel implements ActionListener {
 		coordinates.clear();
 		coordinates.addAll(Arrays.asList(points));
 		Collections.addAll(colorSafe, colors);
+
+		template.addDrawings(Arrays.asList(points), Arrays.asList(colors));
 	}
 
 	/**
@@ -227,6 +238,8 @@ public class Gui extends JPanel implements ActionListener {
 		while (count < countGlobal) {
 
 			var point = coordinates.get(count);
+
+			var drawings = this.template.getDrawings();
 			var color = colorSafe.get(colorSafe.size() == 1 ? 0 : count);
 			count++;
 
