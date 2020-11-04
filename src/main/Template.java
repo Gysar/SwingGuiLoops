@@ -6,8 +6,12 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Stores and handles a List of Drawings
+ */
 public class Template {
 
+    // List of Points and their Colors
     private List<Drawing> drawings;
 
     public Template(Drawing drawing) {
@@ -15,6 +19,11 @@ public class Template {
         drawings.add(drawing);
     }
 
+    /**
+     * Adds the Points and colors to the Drawing List
+     * @param points To be added
+     * @param colors To be added
+     */
     public Template(List<Point> points, List<Color> colors) {
 
         drawings = new ArrayList<>();
@@ -29,19 +38,5 @@ public class Template {
 
     public List<Drawing> getDrawings() {
         return drawings;
-    }
-    public void addDrawing(Drawing drawing){
-        this.drawings.add(drawing);
-    }
-
-    public void addDrawings(List<Point> points, List<Color> colors){
-
-        for(var index = 0; index < points.size(); index++){
-
-            var point = points.get(index);
-            var color = colors.get(index);
-
-            drawings.add(new Drawing(point, color));
-        }
     }
 }
