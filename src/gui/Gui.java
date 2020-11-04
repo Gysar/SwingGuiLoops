@@ -236,6 +236,7 @@ public class Gui extends JPanel implements ActionListener {
 
 			count++;
 		}
+
 		if (countGlobal < templates.size()) {
 			if (doRepaint) {
 				countGlobal++;

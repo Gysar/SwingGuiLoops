@@ -16,11 +16,14 @@ public class Template {
     }
 
     public Template(List<Point> points, List<Color> colors) {
+
         drawings = new ArrayList<>();
-        for(Point point : points){
-            for(Color color : colors){
-                drawings.add(new Drawing(point, color));
-            }
+        for(var index = 0; index < points.size(); index++){
+
+            var point = points.get(index);
+            var color = colors.get(index);
+
+            drawings.add(new Drawing(point, color));
         }
     }
 
@@ -32,10 +35,13 @@ public class Template {
     }
 
     public void addDrawings(List<Point> points, List<Color> colors){
-        for(Point point : points){
-             for(Color color : colors){
-                 drawings.add(new Drawing(point, color));
-             }
+
+        for(var index = 0; index < points.size(); index++){
+
+            var point = points.get(index);
+            var color = colors.get(index);
+
+            drawings.add(new Drawing(point, color));
         }
     }
 }
