@@ -223,11 +223,13 @@ public class MyTaskExample {
      * @param gui used to pass the coordinates with gui.rectangleAt
      */
     private void checkerPatternArray(Gui gui) {
+
         int n = gui.getWidth();
         int m = gui.getHeight();
         final int MAX_SIZE = (gui.getWidth() * gui.getHeight() + 1) / 2;
         int[] is = new int[MAX_SIZE];
         int[] js = new int[MAX_SIZE];
+
         Color[] colors = new Color[MAX_SIZE];
         int counter = 0;
 
