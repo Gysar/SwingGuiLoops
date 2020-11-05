@@ -274,8 +274,7 @@ public class Gui extends JPanel implements ActionListener {
 			update(this.getGraphics());
 		}
 	}
-
-	// Kann immer aufgerufen werden ist aber nie ein problem!?
+	
 	/**
 	 * used to change the size of the window
 	 * 
